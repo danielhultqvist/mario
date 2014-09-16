@@ -1,6 +1,15 @@
 #include <SDL.h>
+#include <vector>
+#include "Drawable.h"
+#include "Player.h"
 #include <stdio.h>
 #include "ApplicationConstants.h"
+
+void cleanResources(std::vector<Drawable*> drawables) {
+	for(int i = 0; i < drawables.size(); ++i) {
+		delete drawables[i];
+	}
+}
 
 int main( int argc, char* args[] )
 {
@@ -9,6 +18,8 @@ int main( int argc, char* args[] )
 	
 	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
+
+	std::vector<Drawable*> drawables;
 
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -25,12 +36,19 @@ int main( int argc, char* args[] )
 		}
 		else
 		{
+			std::vector<Drawable*> drawables;
+			drawables.push_back(new Player(10,10));
+
 			//Get window surface
 			screenSurface = SDL_GetWindowSurface( window );
 
-			//Fill the surface white
-			SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
-			
+            //Fill the surface white
+            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+
+			for(int i = 0; i < drawables.size(); ++i) {
+				drawables[i]->draw(screenSurface);
+			}
+
 			//Update the surface
 			SDL_UpdateWindowSurface( window );
 
@@ -41,6 +59,8 @@ int main( int argc, char* args[] )
 
 	//Destroy window
 	SDL_DestroyWindow( window );
+
+	cleanResources(drawables);
 
 	//Quit SDL subsystems
 	SDL_Quit();
