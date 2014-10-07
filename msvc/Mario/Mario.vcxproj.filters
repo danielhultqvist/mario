@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Application.cpp" />
+    <ClCompile Include="..\..\src\engine\Camera.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\CollisionDetector.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\DestructableBox.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\GameEngine.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\helpers\GraphicsHelper.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\IndestructableBox.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\states\Level1State.cpp">
+      <Filter>states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\states\InitState.cpp">
+      <Filter>states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\Player.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\MovementVector.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\MapLineEntry.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\Map.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\Settings.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\states\MainMenuState.cpp">
+      <Filter>states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\states\SettingsState.cpp">
+      <Filter>states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\helpers\SoundHelper.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\TextureStore.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\Timer.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\engine\MapFactory.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\helpers\StringUtils.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\TestRunner.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\constants\ApplicationConstants.h">
+      <Filter>constants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\Camera.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\CollisionDetector.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Enemy.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Drawable.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\DestructableBox.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Destructable.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\CollisionPoint.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Collidable.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\GameEngine.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\GameState.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\GameStates.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\helpers\GraphicsHelper.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Indestructable.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\IndestructableBox.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\Level1State.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\InitState.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Player.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\MovementVector.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\MapLineEntry.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Map.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\Settings.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\MainMenuState.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\SettingsState.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\helpers\SoundHelper.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\helpers\Require.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\helpers\Logger.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\Timer.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\TextureStore.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\MapFactory.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\helpers\StringUtils.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\states\StateIncludes.h">
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\CollisionDetectionTest.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\MapTest.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\PlayerTest.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\TestRunner.h">
+      <Filter>test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="engine">
+      <UniqueIdentifier>{4737fae7-5c13-4cea-a197-f378f95b727c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="constants">
+      <UniqueIdentifier>{7c587ee5-1529-4770-ad8c-edefcdd75784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="helpers">
+      <UniqueIdentifier>{cde04de1-15f4-4a31-89c8-3d4a6a4255a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="models">
+      <UniqueIdentifier>{2e53e2d9-963a-4c19-a9a8-e07e0698e34d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{04cd52bf-0c8a-4e1d-bd55-02592b5e84b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="states">
+      <UniqueIdentifier>{54b74b96-b4b2-4ddb-8a47-0d32d1d0922c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{ef67215a-5a18-42c7-a2fa-c7caad18d6bd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+#ifndef GAME_STATES_H
+#define GAME_STATES_H
+
+enum GameStates 
+{
+	STATE_NULL,
+	STATE_INIT,
+	STATE_MAIN_MENU,
+	STATE_SETTINGS,
+	STATE_LOADING,
+	
+	STATE_LEVEL_1,
+	STATE_LEVEL_2,
+
+	STATE_EXIT
+};
+
+#endif
