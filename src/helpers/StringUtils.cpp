@@ -1,5 +1,7 @@
 #include "StringUtils.h"
 
+#include <sstream>
+
 const std::string StringUtils::WHITESPACE = " \n\r\t";
 
 bool StringUtils::startsWith(std::string fullString, std::string start)
@@ -22,4 +24,11 @@ std::string StringUtils::trimRight(std::string str)
 std::string StringUtils::trim(std::string str)
 {
 	return trimRight(trimLeft(str));
+}
+
+std::string StringUtils::convertInt(int number)
+{
+   std::stringstream ss;
+   ss << number;
+   return ss.str();
 }

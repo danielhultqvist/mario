@@ -4,9 +4,38 @@
 #include "../engine/GameEngine.h"
 #include "../engine/CollisionDetector.h"
 #include "../helpers/SoundHelper.h"
+#include "../models/Animation.h"
 
-const int PLAYER_WIDTH = 20;
-const int PLAYER_HEIGHT = 40;
+const int PLAYER_WIDTH = 20*2;
+const int PLAYER_HEIGHT = 40*2;
+
+Animation Player::createRunRightAnimation()
+{
+	Animation animation;
+	animation.addStep(1, 1, 31, 39);
+	animation.addStep(1+(1+31)*1, 1, 31, 39);
+	animation.addStep(1+(1+31)*2, 1, 31, 39);
+	animation.addStep(1+(1+31)*3, 1, 31, 39);
+	animation.addStep(1+(1+31)*4, 1, 31, 39);
+	animation.addStep(1+(1+31)*5, 1, 31, 39);
+	animation.setCircular(true);
+	animation.setStepDelta(3);
+	return animation;
+}
+
+Animation Player::createRunLeftAnimation()
+{
+	Animation animation;
+	animation.addStep(1, 1+(1+39)*1, 31, 39);
+	animation.addStep(1+(1+31)*1, 1+(1+39)*1, 31, 39);
+	animation.addStep(1+(1+31)*2, 1+(1+39)*1, 31, 39);
+	animation.addStep(1+(1+31)*3, 1+(1+39)*1, 31, 39);
+	animation.addStep(1+(1+31)*4, 1+(1+39)*1, 31, 39);
+	animation.addStep(1+(1+31)*5, 1+(1+39)*1, 31, 39);
+	animation.setCircular(true);
+	animation.setStepDelta(3);
+	return animation;
+}
 
 Player::Player(int x, int y) : m_speed(9) 
 {
@@ -25,7 +54,11 @@ Player::Player(int x, int y) : m_speed(9)
 	collisionPoints.push_back(CollisionPoint(PLAYER_WIDTH-1, PLAYER_HEIGHT/3, RIGHT));
 	collisionPoints.push_back(CollisionPoint(PLAYER_WIDTH-1, (2*PLAYER_HEIGHT)/3, RIGHT));
 
-	m_jumpSound = SoundHelper::loadChunk("sounds/jump.wav");
+	animationMap[PlayerAnimationStep::RUN_RIGHT] = createRunRightAnimation();
+	animationMap[PlayerAnimationStep::RUN_LEFT] = createRunLeftAnimation();
+	m_currentAnimation = PlayerAnimationStep::RUN_RIGHT;
+
+	m_jumpSound = SoundHelper::loadChunk("resources/sounds/jump.wav");
 }
 
 Player::~Player() 
@@ -33,14 +66,19 @@ Player::~Player()
 	Mix_FreeChunk(m_jumpSound);
 }
 
+void Player::resetAnimation()
+{
+	getAnimation().reset();
+}
+
 void Player::draw(Map* map) {
-	Camera* camera = GameEngine::getInstance().getCamera();
-	SDL_Rect rect = getBoundingBox();
-	
-	rect = getBoundingBox(map);
-	
+	SDL_Rect bb = getBoundingBox(map);
+	Animation& animation = getAnimation();
+
+	SDL_Rect animationRect = animation.getStep();
+
 	TextureStore* store = GameEngine::getInstance().getTextureStore();
-	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), store->getOrLoadTexture(player_texture_path), NULL, &rect);
+	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), store->getOrLoadTexture(player_texture_path), &animationRect, &bb);
 }
 
 void Player::handleOuterBounds(Map* map)
@@ -60,6 +98,22 @@ void Player::handleOuterBounds(Map* map)
 	}
 }
 
+void Player::updateAnimation()
+{
+	if (m_currentAnimation == PlayerAnimationStep::JUMP_RIGHT || m_currentAnimation == PlayerAnimationStep::JUMP_LEFT)
+	{
+		getAnimation().increaseDelta();
+	} 
+	else if (movementVector.dx > 0 && m_currentAnimation == PlayerAnimationStep::RUN_RIGHT)
+	{
+		getAnimation().increaseDelta();
+	}
+	else if (movementVector.dx < 0 && m_currentAnimation == PlayerAnimationStep::RUN_LEFT)
+	{
+		getAnimation().increaseDelta();
+	}
+}
+
 void Player::handle_event(SDL_Event& event)
 {
 	if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
@@ -68,16 +122,20 @@ void Player::handle_event(SDL_Event& event)
 		{
 			case SDLK_LEFT:
 				movementVector.dx -= m_speed;
+				m_currentAnimation = PlayerAnimationStep::RUN_LEFT;
+				resetAnimation();
 				break;
 			case SDLK_RIGHT:
 				movementVector.dx += m_speed;
+				m_currentAnimation = PlayerAnimationStep::RUN_RIGHT;
+				resetAnimation();
 				break;
-			case SDLK_SPACE:
+			case SDLK_UP:
 				if (!m_airbourne)
 				{
 					movementVector.dy -= 20;	
 					m_airbourne = true;
-					Mix_PlayChannel(-1, m_jumpSound, 0);
+					// Mix_PlayChannel(-1, m_jumpSound, 0);
 				}
 				break;
 		}
@@ -96,6 +154,11 @@ void Player::handle_event(SDL_Event& event)
 	}
 }
 
+Animation& Player::getAnimation()
+{
+	return animationMap[m_currentAnimation];
+}
+
 void Player::update(Map* map)
 {
 	std::vector<Destructable*> destructables = map->getDestructables();
@@ -106,7 +169,7 @@ void Player::update(Map* map)
 
 	// apply physics
 	const int gravity = 1;
-	movementVector.dy = std::min(5, movementVector.dy + gravity); //g*multiplier*deltaT;
+	movementVector.dy = std::min(5, movementVector.dy + gravity);
 	movementVector.x = movementVector.x + movementVector.dx;
 	movementVector.y = movementVector.y + movementVector.dy;
 	m_airbourne = true;
@@ -116,40 +179,33 @@ void Player::update(Map* map)
 	handleIndestructableCollisions(indestructables, camera);
 	handleDestructableCollisions(destructables, camera);
 
+	updateAnimation();
+
 	MovementVector actualMovement = { movementVector.x, movementVector.y, movementVector.x - xBefore, movementVector.y - yBefore };
 	camera->moveCamera(actualMovement, map->getOuterBounds());
 }
 
 SDL_Rect Player::getBoundingBox()
 {
-	SDL_Rect bb;
-	bb.x = movementVector.x;
-	bb.y = movementVector.y;
-	bb.w = m_w;
-	bb.h = m_h;
+	SDL_Rect bb = { movementVector.x, movementVector.y, m_w, m_h };
 	return bb;
 }
 
 SDL_Rect Player::getBoundingBox(Map* map)
 {
-	Camera* camera = GameEngine::getInstance().getCamera();
 	MapBounds bounds = map->getOuterBounds();
-
-	int cameraWidth = 1024 / 2;
-	int testX = cameraWidth;
-	if (bounds.left + cameraWidth > movementVector.x)
+	Camera* camera = GameEngine::getInstance().getCamera();
+	int cameraHalfWidth = camera->getWindowSizeX() / 2;
+	int testX = cameraHalfWidth;
+	if (bounds.left + cameraHalfWidth > movementVector.x)
 	{
 		testX = movementVector.x;
 	}
-	else if (bounds.right - cameraWidth < movementVector.x)
+	else if (bounds.right - cameraHalfWidth < movementVector.x)
 	{
-		testX = movementVector.x - (bounds.right - cameraWidth*2);
+		testX = movementVector.x - (bounds.right - cameraHalfWidth*2);
 	}
-	SDL_Rect bb;
-	bb.x = testX;
-	bb.y = movementVector.y;
-	bb.w = m_w;
-	bb.h = m_h;
+	SDL_Rect bb = { testX, movementVector.y, m_w, m_h };
 	return bb;
 }
 

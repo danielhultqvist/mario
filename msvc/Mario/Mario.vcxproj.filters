@@ -65,6 +65,15 @@
     <ClCompile Include="..\..\test\TestRunner.cpp">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\engine\Counter.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\Animation.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\models\MapEditor.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\constants\ApplicationConstants.h">
@@ -174,6 +183,15 @@
     </ClInclude>
     <ClInclude Include="..\..\test\TestRunner.h">
       <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\engine\Counter.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\Animation.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\models\MapEditor.h">
+      <Filter>models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

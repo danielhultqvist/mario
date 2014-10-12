@@ -3,18 +3,19 @@
 #include "GameStates.h"
 #include <math.h>
 #include "../engine/GameEngine.h"
+#include "../helpers/SoundHelper.h"
 
 MainMenuState::MainMenuState() 
 {
-	background = GraphicsHelper::loadTexture("resources/images/mainmenu.png");
-	star = GraphicsHelper::loadTexture("resources/images/star.png");
+	m_background = GraphicsHelper::loadTexture("resources/images/mainmenu.png");
+	m_star = GraphicsHelper::loadTexture("resources/images/star.png");
 	m_selectedOption = 0;
 }
 
 MainMenuState::~MainMenuState()
 {
-	SDL_DestroyTexture(background);
-	SDL_DestroyTexture(star);
+	SDL_DestroyTexture(m_background);
+	SDL_DestroyTexture(m_star);
 }
 
 void MainMenuState::moveSelectionUp()
@@ -95,6 +96,6 @@ SDL_Rect MainMenuState::createStartRenderBox()
 
 void MainMenuState::render()
 {
-	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), background, NULL, NULL);
-	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), star, NULL, &createStartRenderBox());
+	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), m_background, NULL, NULL);
+	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), m_star, NULL, &createStartRenderBox());
 }

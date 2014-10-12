@@ -1,0 +1,84 @@
+# ------------------------------------------------
+# LINES STARTING WITH '#' ARE REGARDED AS COMMENTS
+#
+# TYPES:
+# -----------------------
+# INDESTRUCTABLE_BOX;X;Y;W;H;TEXTURE_PATH
+# DESTRUCTABLE_BOX;X;Y;W;H;TEXTURE_PATH
+# OUTER_BOUNDS;TOP;BOTTOM;LEFT;RIGHT
+# ------------------------------------------------
+
+INDESTRUCTABLE_BOX;0;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;40;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;80;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;120;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;160;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;200;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;240;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;280;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;320;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;360;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;400;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;440;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;480;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;520;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;560;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;600;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;640;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;680;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;720;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;760;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;880;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;920;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;960;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1000;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1040;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1080;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1120;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1160;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1200;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1240;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1280;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1320;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1360;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1400;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1440;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1480;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1520;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1560;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1600;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1640;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1680;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1720;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1760;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1800;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1840;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1880;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1920;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;1960;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;2000;728;40;40;resources/images/brick.png
+INDESTRUCTABLE_BOX;2040;728;40;40;resources/images/brick.png
+
+DESTRUCTABLE_BOX;320;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;360;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;400;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;440;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;360;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;400;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;560;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;600;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;640;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;600;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;760;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;880;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1200;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1240;688;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1240;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1360;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1400;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1440;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1480;648;40;40;resources/images/wood-box.png
+DESTRUCTABLE_BOX;1520;648;40;40;resources/images/wood-box.png
+
+OUTER_BOUNDS;0;768;0;2040
+

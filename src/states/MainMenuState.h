@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include "GameState.h"
+#include <SDL_mixer.h>
 
 enum class MainMenuOption
 {
@@ -27,8 +28,8 @@ public:
 	void selectOption();
 
 private:
-	SDL_Texture* background;
-	SDL_Texture* star;
+	SDL_Texture* m_background;
+	SDL_Texture* m_star;
 	int m_selectedOption;
 };
 

@@ -21,8 +21,11 @@ IndestructableBox::IndestructableBox(std::deque<std::string> values)
 
 void IndestructableBox::draw()
 {
-	TextureStore* store = GameEngine::getInstance().getTextureStore();
-	SDL_RenderCopy(GameEngine::getInstance().getRenderer(), store->getOrLoadTexture(m_texture_path), NULL, &getBoundingBox());		
+	if (shouldBeDrawn())
+	{
+		TextureStore* store = GameEngine::getInstance().getTextureStore();
+		SDL_RenderCopy(GameEngine::getInstance().getRenderer(), store->getOrLoadTexture(m_texture_path), NULL, &getBoundingBox());			
+	}
 }
 
 void IndestructableBox::draw(int offsetX, int offsetY)
@@ -49,4 +52,16 @@ SDL_Rect IndestructableBox::getBoundingBox(int offsetX, int offsetY)
 	bb.w = m_w;
 	bb.h = m_h;
 	return bb;
+}
+
+bool IndestructableBox::shouldBeDrawn()
+{
+	Camera* camera = GameEngine::getInstance().getCamera();
+	int leftSideOfCamera = camera->getOffsetX();
+	int rightSideOfCamera = camera->getWindowSizeX() + camera->getOffsetX();
+	int leftSideOfObject = m_x;
+	int rightSideOfObject = m_x + m_w;
+	
+	return ((leftSideOfObject > leftSideOfCamera && leftSideOfObject < rightSideOfCamera) ||
+		    (rightSideOfCamera > leftSideOfCamera && rightSideOfObject < rightSideOfCamera));
 }

@@ -36,6 +36,7 @@ SDL_Texture* GraphicsHelper::loadTexture( std::string path )
 	SDL_Surface* tempResult = loadSurfaceSimple( path );
 	if (tempResult != NULL) 
 	{
+		SDL_SetColorKey( tempResult, SDL_TRUE, SDL_MapRGB( tempResult->format, 0xFF, 0x00, 0xFF ) );
 		result = SDL_CreateTextureFromSurface( renderer, tempResult );
 		if (result == NULL) 
 		{
