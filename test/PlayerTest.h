@@ -36,7 +36,7 @@ TEST(PlayerTest, shouldNotBeAbleToDoubleJump)
 	int beforeJumps = testPlayer.getMovementVector().dy;
 
 	// When jump button is pressed twice 
-	SDL_Event event = simulateKeyEvent(SDLK_SPACE, SDL_KEYDOWN);
+	SDL_Event event = simulateKeyEvent(SDLK_UP, SDL_KEYDOWN);
 	testPlayer.handle_event(event);
 	int afterFirstJump = testPlayer.getMovementVector().dy;
 	testPlayer.handle_event(event);
@@ -45,11 +45,6 @@ TEST(PlayerTest, shouldNotBeAbleToDoubleJump)
 	// Then only one jump event should be used
 	ASSERT_NE(afterFirstJump, beforeJumps);
 	ASSERT_EQ(afterSecondJump, afterFirstJump);
-}
-
-TEST(PlayerTest, shouldNotFallThroughBox)
-{
-	//ASSERT_EQ(true ,false);
 }
 
 TEST(PlayerTest, shouldNotFallThroughIndestructable)
@@ -91,15 +86,17 @@ TEST(PlayerTest, shouldNotPassThroughIndestructableToTheRight)
 {
 	// Given map with indestructable object and player
 	Map map;
-	Indestructable* indestructable = createIndestructable("100", "100", "20", "20");
+	Indestructable* indestructable = createIndestructable("100", "100", "80", "80");
 	map.getIndestructables().push_back(indestructable);
-	Player player(72,100);
+	Player player(0,0);
+	player.moveTo(100 - player.getBoundingBox().w-1, 100);
 
 	// When player goes to the right
 	player.getMovementVector().dx = 3;
 	player.update(&map);
 
 	// Then player should not move through it
+	ASSERT_EQ(player.getBoundingBox().y - player.getGravityConstant(), indestructable->getBoundingBox().y);
 	ASSERT_EQ(player.getBoundingBox().x+player.getBoundingBox().w + 1, indestructable->getBoundingBox().x);
 }
 
@@ -107,15 +104,17 @@ TEST(PlayerTest, shouldNotPassThroughIndestructableToTheLeft)
 {
 	// Given map with indestructable object and player
 	Map map;
-	Indestructable* indestructable = createIndestructable("100", "100", "20", "20");
+	Indestructable* indestructable = createIndestructable("100", "100", "80", "80");
 	map.getIndestructables().push_back(indestructable);
-	Player player(128,100);
+	Player player(0,0);
+	player.moveTo(100 + indestructable->getBoundingBox().w + 1, 100);
 
 	// When player goes to the right
 	player.getMovementVector().dx = -3;
 	player.update(&map);
 
 	// Then player should not move through it
+	ASSERT_EQ(player.getBoundingBox().y - player.getGravityConstant(), indestructable->getBoundingBox().y);
 	ASSERT_EQ(player.getBoundingBox().x, indestructable->getBoundingBox().x+indestructable->getBoundingBox().w+1);
 }
 

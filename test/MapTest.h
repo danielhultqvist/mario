@@ -9,14 +9,14 @@
 TEST(MapTests, shouldCreateMapContainingIndestructables)
 {
 	Map testMap;
-	testMap.loadFromFile("testfiles/testmap_4indestructables.map");
+	testMap.loadFromFile("test/testfiles/testmap_4indestructables.map");
 	ASSERT_EQ(testMap.getIndestructables().size(), 4);
 }
 
 TEST(MapTests, shouldCreateMapContainingDestructables)
 {
 	Map testMap;
-	testMap.loadFromFile("testfiles/testmap_3destructables.map");
+	testMap.loadFromFile("test/testfiles/testmap_3destructables.map");
 	ASSERT_EQ(testMap.getDestructables().size(), 3);
 }
 

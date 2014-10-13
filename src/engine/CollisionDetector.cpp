@@ -65,8 +65,8 @@ bool CollisionDetector::checkCollision(CollisionPoint p, Collidable* a, Camera* 
 	SDL_Rect a_boundingbox = a->getBoundingBox();
 	int topA = a_boundingbox.y;
 	int bottomA  = a_boundingbox.y + a_boundingbox.h;
-	int leftA = a_boundingbox.x; // + camera->getOffsetX();
-	int rightA  = a_boundingbox.x + a_boundingbox.w; // + camera->getOffsetX();
+	int leftA = a_boundingbox.x;
+	int rightA  = a_boundingbox.x + a_boundingbox.w;
 
 	if (p.x < leftA)
 	{
@@ -85,5 +85,4 @@ bool CollisionDetector::checkCollision(CollisionPoint p, Collidable* a, Camera* 
 		return false;
 	}
 	return true;
-
 }

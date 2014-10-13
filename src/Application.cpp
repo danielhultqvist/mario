@@ -97,8 +97,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	if (argc == 2)
 	{
 		TestRunner testRunner;
-		//return testRunner.runAllTests();
-		return testRunner.runTestGroup("PlayerTest");
+		return testRunner.runAllTests();
+		//return testRunner.runTestGroup("PlayerTest");
 		//return testRunner.runSingleTest("PlayerTest", "shouldNotPassThroughIndestructableToTheLeft");
 	} 
 	// Start game

@@ -37,7 +37,7 @@ Animation Player::createRunLeftAnimation()
 	return animation;
 }
 
-Player::Player(int x, int y) : m_speed(9) 
+Player::Player(int x, int y) : m_speed(9), m_gravityConstant(1)
 {
 	m_w = PLAYER_WIDTH;
 	m_h = PLAYER_HEIGHT;
@@ -57,13 +57,16 @@ Player::Player(int x, int y) : m_speed(9)
 	animationMap[PlayerAnimationStep::RUN_RIGHT] = createRunRightAnimation();
 	animationMap[PlayerAnimationStep::RUN_LEFT] = createRunLeftAnimation();
 	m_currentAnimation = PlayerAnimationStep::RUN_RIGHT;
-
-	m_jumpSound = SoundHelper::loadChunk("resources/sounds/jump.wav");
+	m_jumpSound = NULL;
+	//m_jumpSound = SoundHelper::loadChunk("resources/sounds/jump.wav");
 }
 
 Player::~Player() 
 {
-	Mix_FreeChunk(m_jumpSound);
+	if (m_jumpSound)
+	{
+		Mix_FreeChunk(m_jumpSound);	
+	}
 }
 
 void Player::resetAnimation()
@@ -168,8 +171,7 @@ void Player::update(Map* map)
 	int yBefore = movementVector.y;
 
 	// apply physics
-	const int gravity = 1;
-	movementVector.dy = std::min(5, movementVector.dy + gravity);
+	movementVector.dy = std::min(5, movementVector.dy + m_gravityConstant);
 	movementVector.x = movementVector.x + movementVector.dx;
 	movementVector.y = movementVector.y + movementVector.dy;
 	m_airbourne = true;

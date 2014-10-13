@@ -11,6 +11,7 @@ GameEngine::GameEngine()
 	m_stateId = STATE_NULL;
 	m_nextStateId = STATE_NULL;
 	m_textureStore = new TextureStore();
+	m_camera = new Camera();
 }
 
 GameEngine::~GameEngine()

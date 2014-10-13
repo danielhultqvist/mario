@@ -52,6 +52,7 @@ public:
 	SDL_Rect getBoundingBox(Map* map);
 	MovementVector& getMovementVector();
 	void moveTo(int x, int y);
+	int getGravityConstant() { return m_gravityConstant; }
 
 private:
 	std::map<PlayerAnimationStep, Animation> animationMap;
@@ -64,6 +65,7 @@ private:
 	void handleIndestructableCollisions(std::vector<Indestructable*> indestructables, Camera* camera);
 	void handleDestructableCollisions(std::vector<Destructable*> destructables, Camera* camera);
 	PlayerAnimationStep m_currentAnimation;
+	const int m_gravityConstant;
 };
 
 #endif PLAYER_H

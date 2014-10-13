@@ -10,8 +10,6 @@ Camera::Camera()
 
 void Camera::moveCamera(MovementVector vector, MapBounds bounds)
 {
-	//m_offsetX -= vector.dx;
-	//m_offsetX = std::min(bounds.left, m_offsetX);
 	if (bounds.left + m_windowSizeX / 2 > vector.x)
 	{
 		m_offsetX = 0;
@@ -24,8 +22,6 @@ void Camera::moveCamera(MovementVector vector, MapBounds bounds)
 	{
  		m_offsetX = -(vector.x - bounds.left - m_windowSizeX / 2);	
 	}
-
-	
 }
 
 int Camera::getOffsetX()
